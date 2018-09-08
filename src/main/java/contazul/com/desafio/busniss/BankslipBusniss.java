@@ -26,14 +26,26 @@ public class BankslipBusniss {
 	}
 
 	public Bankslip payment(UUID id, BankslipRepository repository) {
-		return changeStatus(id, statusPAID, repository);
+		
+		// Setting Status to APID
+		Bankslip bankslip = changeStatus(id, statusPAID, repository);
+		
+		// Define a date to the payment
+		bankslip.setPayment_date(this.getNow());
+		repository.save(bankslip);
+		
+		return bankslip;
 	}
 
+	private java.sql.Date getNow() {
+		java.util.Date utilDate = new java.util.Date();
+	    return new java.sql.Date(utilDate.getTime()); 
+	}
+	
 	private Bankslip changeStatus(UUID id, String status, BankslipRepository repository) {
 		Bankslip bankslipt = repository.findById(id).get();
 		bankslipt.setStatus(status);
-		repository.save(bankslipt);
-		return bankslipt;
+		return repository.save(bankslipt);
 	}
 	
 }

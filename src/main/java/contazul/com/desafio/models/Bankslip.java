@@ -1,6 +1,7 @@
 package contazul.com.desafio.models;
 
 import java.sql.Date;
+
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -8,10 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Bankslip {
@@ -22,17 +21,15 @@ public class Bankslip {
 	@Column(name = "key", unique = true, nullable = false)
 	private UUID id;
 	
-	@NotNull
-	@DateTimeFormat
+	@NotNull(message= "due_date field is required")
 	private Date due_date;
 	private Date payment_date;
 	
-	@NotNull
-	@Positive
+	@NotNull(message = "total in cents is required")
 	private double total_in_cents;
 	private double fine;
 	
-	@NotNull
+	@NotNull(message = "customer is required")
 	private String customer;
 	
 	private String status;
@@ -69,18 +66,12 @@ public class Bankslip {
 		this.customer = customer;
 	}
 
-	public String getStatus(String status) {
+	public String getStatus() {
 		return this.status;
 	}
 	
 	public void setStatus(String status) {
 		this.status = status;
-	}
-	
-	@Override
-	public String toString() {
-		return "Bankslip [id=" + id + ", due_date=" + due_date + ", total_in_cents=" + total_in_cents + ", customer="
-				+ customer + ", status=" + status + "]";
 	}
 
 	public Date getPayment_date() {
