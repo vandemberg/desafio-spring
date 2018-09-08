@@ -7,8 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Bankslip {
@@ -19,11 +22,19 @@ public class Bankslip {
 	@Column(name = "key", unique = true, nullable = false)
 	private UUID id;
 	
+	@NotNull
+	@DateTimeFormat
 	private Date due_date;
 	private Date payment_date;
+	
+	@NotNull
+	@Positive
 	private double total_in_cents;
 	private double fine;
+	
+	@NotNull
 	private String customer;
+	
 	private String status;
 	
 	public UUID getId() {
@@ -33,7 +44,7 @@ public class Bankslip {
 	public void setId(UUID id) {
 		this.id = id;
 	}
-
+	
 	public Date getDue_date() {
 		return due_date;
 	}

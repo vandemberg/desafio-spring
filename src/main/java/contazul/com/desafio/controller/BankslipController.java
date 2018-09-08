@@ -15,6 +15,8 @@ import contazul.com.desafio.repositories.BankslipRepository;
 import java.util.List;
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 @RestController
 public class BankslipController {
 	
@@ -27,22 +29,22 @@ public class BankslipController {
 		this.busniss = new BankslipBusniss();
 	}
 	
-	@GetMapping("/rest/bankslip")
+	@GetMapping("/rest/bankslips")
 	public List<Bankslip> listAll() {
 		return repository.findAll();
 	}
 	
-	@PostMapping("/rest/bankslip")
-	public Bankslip create(@RequestBody Bankslip newBankslip) {
+	@PostMapping("/rest/bankslips")
+	public Bankslip create(@Valid @RequestBody Bankslip newBankslip) {
 		return busniss.create(newBankslip, repository);
 	}
 		
-	@GetMapping("/rest/bankslip/{id}")
+	@GetMapping("/rest/bankslips/{id}")
 	public Bankslip find(@PathVariable UUID id) {
 		return busniss.details(id, repository);
 	}
 	
-	@DeleteMapping("/rest/bankslip/{id}")
+	@DeleteMapping("/rest/bankslips/{id}")
 	public Object delete(@PathVariable UUID id) {
 		return busniss.delete(id, repository);
 	}

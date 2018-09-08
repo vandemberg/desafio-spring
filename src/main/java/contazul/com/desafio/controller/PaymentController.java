@@ -23,7 +23,7 @@ public class PaymentController {
 		this.busniss = new BankslipBusniss();
 	}
 	
-	@PostMapping("/rest/bankslip/{id}/payment")
+	@PostMapping("/rest/bankslips/{id}/payment")
 	public Bankslip payment(@PathVariable UUID id) {
 		return busniss.payment(id, repository);
 	}
