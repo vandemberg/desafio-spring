@@ -27,18 +27,23 @@ public class BankslipBusniss {
 	}
 
 	public Bankslip details(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		Bankslip bankslip = repository.findById(id).get();
+		return bankslip;
 	}
 
 	public Object delete(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		return changeStatus(id, statusCANCELED);
 	}
 
 	public Bankslip payment(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		return changeStatus(id, statusPAID);
 	}
 
+	private Bankslip changeStatus(UUID id, String status ) {
+		Bankslip bankslip = repository.findById(id).get();
+		bankslip.setStatus(status);
+		repository.save(bankslip);
+		return bankslip;
+	}
+	
 }

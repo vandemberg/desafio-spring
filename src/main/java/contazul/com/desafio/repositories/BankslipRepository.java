@@ -8,5 +8,5 @@ import contazul.com.desafio.models.Bankslip;
 
 @Repository("bankslipRepository")
 public interface BankslipRepository extends JpaRepository<Bankslip, UUID> {
-	
+
 }
