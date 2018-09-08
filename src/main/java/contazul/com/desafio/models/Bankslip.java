@@ -56,14 +56,14 @@ public class Bankslip {
 		this.customer = customer;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getStatus(String status) {
+		return this.status;
 	}
-
+	
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Bankslip [id=" + id + ", dueDate=" + dueDate + ", totalInCents=" + totalInCents + ", customer="
