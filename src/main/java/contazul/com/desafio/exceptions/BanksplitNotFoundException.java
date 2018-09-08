@@ -1,11 +1,11 @@
 package contazul.com.desafio.exceptions;
 
-import java.util.UUID;
+public class BanksplitNotFoundException extends RuntimeException {
+	
+	private static final long serialVersionUID = 1L;
 
-public class BanksplitNotFoundException {
-
-	public BanksplitNotFoundException(UUID id) {
-		// TODO Auto-generated constructor stub
+	public BanksplitNotFoundException(String exception) {
+		super(exception);
 	}
 
 }

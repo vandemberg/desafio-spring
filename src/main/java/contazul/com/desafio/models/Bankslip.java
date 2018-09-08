@@ -26,8 +26,8 @@ public class Bankslip {
 	private Date payment_date;
 	
 	@NotNull(message = "total in cents is required")
-	private double total_in_cents;
-	private double fine;
+	private long total_in_cents;
+	private long fine;
 	
 	@NotNull(message = "customer is required")
 	private String customer;
@@ -50,11 +50,11 @@ public class Bankslip {
 		this.due_date = due_date;
 	}
 
-	public double getTotal_in_cents() {
+	public long getTotal_in_cents() {
 		return total_in_cents;
 	}
 
-	public void setTotal_in_cents(double total_in_cents) {
+	public void setTotal_in_cents(long total_in_cents) {
 		this.total_in_cents = total_in_cents;
 	}
 
@@ -82,11 +82,11 @@ public class Bankslip {
 		this.payment_date = payment_date;
 	}
 
-	public double getFine() {
+	public long getFine() {
 		return fine;
 	}
 
-	public void setFine(double fine) {
+	public void setFine(long fine) {
 		this.fine = fine;
 	}
 		

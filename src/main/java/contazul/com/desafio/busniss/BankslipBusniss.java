@@ -1,7 +1,9 @@
 package contazul.com.desafio.busniss;
 
+import java.sql.Date;
 import java.util.UUID;
 
+import contazul.com.desafio.helpers.BankslipHelper;
 import contazul.com.desafio.models.Bankslip;
 import contazul.com.desafio.repositories.BankslipRepository;
 
@@ -18,6 +20,8 @@ public class BankslipBusniss {
 
 	public Bankslip details(UUID id, BankslipRepository repository) {
 		Bankslip bankslip = repository.findById(id).get();
+		long fine = BankslipHelper.fine(bankslip);
+		bankslip.setFine(fine);
 		return bankslip;
 	}
 
@@ -31,15 +35,17 @@ public class BankslipBusniss {
 		Bankslip bankslip = changeStatus(id, statusPAID, repository);
 		
 		// Define a date to the payment
-		bankslip.setPayment_date(this.getNow());
+		Date now = new Date(new java.util.Date().getTime());
+		bankslip.setPayment_date(now);
+		
+		// Define the fine value
+		long fine = BankslipHelper.fine(bankslip);
+		bankslip.setFine(fine);
+		
+		// Save the changes
 		repository.save(bankslip);
 		
 		return bankslip;
-	}
-
-	private java.sql.Date getNow() {
-		java.util.Date utilDate = new java.util.Date();
-	    return new java.sql.Date(utilDate.getTime()); 
 	}
 	
 	private Bankslip changeStatus(UUID id, String status, BankslipRepository repository) {
