@@ -19,8 +19,10 @@ public class Bankslip {
 	@Column(name = "key", unique = true, nullable = false)
 	private UUID id;
 	
-	private Date dueDate;
-	private double totalInCents;
+	private Date due_date;
+	private Date payment_date;
+	private double total_in_cents;
+	private double fine;
 	private String customer;
 	private String status;
 	
@@ -32,20 +34,20 @@ public class Bankslip {
 		this.id = id;
 	}
 
-	public Date getDueDate() {
-		return dueDate;
+	public Date getDue_date() {
+		return due_date;
 	}
 
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
+	public void setDue_date(Date due_date) {
+		this.due_date = due_date;
 	}
 
-	public double getTotalInCents() {
-		return totalInCents;
+	public double getTotal_in_cents() {
+		return total_in_cents;
 	}
 
-	public void setTotalInCents(double totalInCents) {
-		this.totalInCents = totalInCents;
+	public void setTotal_in_cents(double total_in_cents) {
+		this.total_in_cents = total_in_cents;
 	}
 
 	public String getCustomer() {
@@ -66,8 +68,24 @@ public class Bankslip {
 	
 	@Override
 	public String toString() {
-		return "Bankslip [id=" + id + ", dueDate=" + dueDate + ", totalInCents=" + totalInCents + ", customer="
+		return "Bankslip [id=" + id + ", due_date=" + due_date + ", total_in_cents=" + total_in_cents + ", customer="
 				+ customer + ", status=" + status + "]";
+	}
+
+	public Date getPayment_date() {
+		return payment_date;
+	}
+
+	public void setPayment_date(Date payment_date) {
+		this.payment_date = payment_date;
+	}
+
+	public double getFine() {
+		return fine;
+	}
+
+	public void setFine(double fine) {
+		this.fine = fine;
 	}
 		
 }
