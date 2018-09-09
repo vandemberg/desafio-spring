@@ -11,7 +11,7 @@ public class CalculatorFine {
 		
 		if(due_time >= current_time) {
 			fine = new FineEmpty();
-		} else if(total_days > 10) {
+		} else if(total_days >= 10) {
 			fine = new FineHigh10Days(); 
 		} else {
 			fine = new FineLess10Days();
