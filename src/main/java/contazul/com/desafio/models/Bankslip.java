@@ -15,6 +15,13 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Bankslip {
 	
+	public Bankslip(Date due_date, long total_in_cents, String customer, String status) {
+		setDue_date(due_date);
+		setTotal_in_cents(total_in_cents);
+		setCustomer(customer);
+		setStatus(status);
+	}
+	
 	@Id
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")

@@ -15,8 +15,6 @@ import contazul.com.desafio.repositories.BankslipRepository;
 import java.util.List;
 import java.util.UUID;
 
-import javax.validation.Valid;
-
 @RestController
 public class BankslipController {
 	
@@ -35,8 +33,8 @@ public class BankslipController {
 	}
 	
 	@PostMapping("/rest/bankslips")
-	public Bankslip create(@Valid @RequestBody Bankslip newBankslip) {
-		return busniss.create(newBankslip, repository);
+	public Bankslip create(@RequestBody Bankslip bankslip) {
+		return busniss.create(bankslip, repository);
 	}
 		
 	@GetMapping("/rest/bankslips/{id}")
