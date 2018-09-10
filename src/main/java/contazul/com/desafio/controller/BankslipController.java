@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import contazul.com.desafio.busniss.BankslipBusniss;
+import contazul.com.desafio.exceptions.BanksplitNotFoundException;
 import contazul.com.desafio.models.Bankslip;
 import contazul.com.desafio.repositories.BankslipRepository;
 
@@ -39,11 +40,21 @@ public class BankslipController {
 		
 	@GetMapping("/rest/bankslips/{id}")
 	public Bankslip find(@PathVariable UUID id) {
+		
+		if(! repository.existsById(id)) {
+			throw new BanksplitNotFoundException("Bankslip not found with the specified id");
+		}
+		
 		return busniss.details(id, repository);
 	}
 	
 	@DeleteMapping("/rest/bankslips/{id}")
 	public Object delete(@PathVariable UUID id) {
+		
+		if(! repository.existsById(id)) {
+			throw new BanksplitNotFoundException("Bankslip not found with the specified id");
+		}
+		
 		return busniss.delete(id, repository);
 	}
 	
