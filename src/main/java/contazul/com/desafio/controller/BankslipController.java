@@ -29,7 +29,7 @@ public class BankslipController {
 	
 	@GetMapping("/rest/bankslips")
 	public List<Bankslip> listAll() {
-		return repository.findAll();
+		return busniss.all(repository);
 	}
 	
 	@PostMapping("/rest/bankslips")

@@ -1,6 +1,7 @@
 package contazul.com.desafio.busniss;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.UUID;
 
 import contazul.com.desafio.helpers.BankslipHelper;
@@ -12,7 +13,11 @@ public class BankslipBusniss {
 	private String statusPending = "PENDING";
 	private String statusPAID = "PAID";
 	private String statusCANCELED = "CANCELED";
-
+	
+	public List<Bankslip> all(BankslipRepository repository) {
+		return repository.findAll();
+	}
+	
 	public Bankslip create(Bankslip bankslip, BankslipRepository repository) {
 		bankslip.setStatus(this.statusPending);
 		return repository.save(bankslip);
@@ -29,14 +34,13 @@ public class BankslipBusniss {
 		return changeStatus(id, statusCANCELED, repository);
 	}
 
-	public Bankslip payment(UUID id, BankslipRepository repository) {
+	public Bankslip payment(UUID id, BankslipRepository repository, Date date_payment) {
 		
 		// Setting Status to APID
 		Bankslip bankslip = changeStatus(id, statusPAID, repository);
 		
 		// Define a date to the payment
-		Date now = new Date(new java.util.Date().getTime());
-		bankslip.setPayment_date(now);
+		bankslip.setPayment_date(date_payment);
 		
 		// Define the fine value
 		long fine = BankslipHelper.fine(bankslip);

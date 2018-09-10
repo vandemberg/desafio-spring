@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import contazul.com.desafio.busniss.BankslipBusniss;
@@ -24,8 +25,8 @@ public class PaymentController {
 	}
 	
 	@PostMapping("/rest/bankslips/{id}/payment")
-	public Bankslip payment(@PathVariable UUID id) {
-		return busniss.payment(id, repository);
+	public Bankslip payment(@PathVariable UUID id, @RequestBody Bankslip payment) {
+		return busniss.payment(id, repository, payment.getPayment_date());
 	}
 	
 }
